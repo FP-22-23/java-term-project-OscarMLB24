@@ -1,9 +1,7 @@
-# Proyecto del Segundo Cuatrimestre Fundamentos de Programación (Curso 2021/22)
-Autor/a: Toñi Reina   uvus:reinaqu
+# Programming Fundamentals Second Semester Porjec (Curse 2022/23)
+Author/a: Óscar Alfonso Mitillo López-Barajas   UVUS:MFC0613
 
-Este proyecto es una adaptación del proyecto presentado por el estudiante Pablo Diego Acosta, en el curso 2021/22.
-
-## Estructura de las carpetas del proyecto
+## FOLDER'S STRUCTURE
 
 * **/src**: Directorio con el código fuente.
   * **fp.ajedrez**: Paquete que contiene los tipos del proyecto.
