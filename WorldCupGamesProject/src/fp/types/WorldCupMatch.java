@@ -75,62 +75,6 @@ public class WorldCupMatch implements Comparable<WorldCupMatch> {
 		this.matchId = matchId;
 	}
 
-	public WorldCupMatch(String s) {
-		String[] values = s.split(";");
-		Checkers.check("Not valid format", values.length==21);
-		List<String> referees = new ArrayList<String>();
-
-		Integer year = Integer.valueOf(values[0].replace("(", "").trim());
-		LocalDateTime dateTime = LocalDateTime.parse(values[1],DateTimeFormatter.ofPattern("dd MMM yyyy - HH:mm ")); //
-		String stage = String.valueOf(values[2].trim());
-		Location location = new Location(values[3],values[4]);
-		String homeTeamName = String.valueOf(values[5].trim());
-		Integer homeTeamGoals = Integer.valueOf(values[6].trim());
-		Integer awayTeamGoals = Integer.valueOf(values[7].trim());
-		String awayTeamName = String.valueOf(values[8].trim());
-		String winConditions = String.valueOf(values[9].trim());
-		Integer attendance = Integer.valueOf(values[10].trim());
-		Integer halfTimeHomeGoals = Integer.valueOf(values[11].trim());
-		Integer halfTimeAwayGoals = Integer.valueOf(values[12].trim());
-		referees.add(values[13]);
-		referees.add(values[14]);
-		referees.add(values[15]);
-		Integer roundId = Integer.valueOf(values[16].trim());
-		Integer matchId = Integer.valueOf(values[17].trim());
-		String homeTeamInitials = String.valueOf(values[18].trim());
-		String awayTeamInitials = String.valueOf(values[19].trim());
-		Double firstShotMinute = Double.valueOf(values[20].replace(")", "").trim());
-		
-		
-		Checkers.check("The year is not correct", year>=1930 && year<=LocalDate.now().getYear() && (year-1930)%4==0 && year==dateTime.getYear());
-		Checkers.check("The date is not correct", !dateTime.isAfter(LocalDateTime.now()));
-		Checkers.check("The goals are not correct", homeTeamGoals>=0 && awayTeamGoals>=0);
-		Checkers.check("The attendace is not correct", attendance>=0);
-		Checkers.check("The half-time goals are not correct", halfTimeHomeGoals>=0 && halfTimeAwayGoals>=0 && halfTimeHomeGoals<=homeTeamGoals && halfTimeAwayGoals<=awayTeamGoals);
-		Checkers.check("The round/match id is not correct", roundId>=0 && matchId>=0);
-		Checkers.check("The initials of the teams are not correct", homeTeamInitials.length()==3 && awayTeamInitials.length()==3);
-		Checkers.check("The minute of the first shot is not correct", firstShotMinute>=0 && firstShotMinute<=90);
-		
-		this.year = year;
-		this.dateTime = dateTime;
-		this.stage = stage;
-		this.location= location;
-		this.homeTeamName = homeTeamName;
-		this.homeTeamGoals = homeTeamGoals;
-		this.awayTeamGoals = awayTeamGoals;
-		this.awayTeamName = awayTeamName;
-		this.winConditions = winConditions;
-		this.attendance = attendance;
-		this.halfTimeHomeGoals = halfTimeHomeGoals;
-		this.halfTimeAwayGoals = halfTimeAwayGoals;
-		this.referees = referees;
-		this.roundId = roundId;
-		this.matchId = matchId;
-		this.homeTeamInitials = homeTeamInitials;
-		this.awayTeamInitials = awayTeamInitials;
-		this.firstShotMinute = firstShotMinute;
-	}
-
 	//derived properties
 
 	public MatchResult getResult() {
