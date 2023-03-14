@@ -9,7 +9,6 @@ import fp.types.WorldCupMatch;
 
 public class TestWorldCupMatch {
 	public static void main(String[] args) {
-		//WorldCupMatch w = new WorldCupMatch("1930;13 Jul 1930 - 15:00;Group 1;Pocitos;Montevideo;France;4;1;Mexico; ;4444;3;0;LOMBARDI Domingo (URU);CRISTOPHE Henry (BEL);REGO Gilberto (BRA);201;1096;FRA;MEX;6,26");
 		Location l = new Location("Pocitos","Monteviedo");
 		List<String> list = new ArrayList<String>();
 		WorldCupMatch m = new WorldCupMatch(1930,LocalDateTime.of(1930, 07, 12, 15, 0), "Group 1" ,l, "France" , 4, 1, "Mexico", "", 4444, 3, 0, list , 201, 1096, "FRA", "MEX", 6.26);
