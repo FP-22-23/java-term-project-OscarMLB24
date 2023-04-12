@@ -1,4 +1,4 @@
-# Programming Fundamentals' Second Semester Project (Curse 2022/23)
+# Programming Fundamentals' Second Semester Project (Course 2022/23)
 Author/a: Óscar Alfonso Mitillo López-Barajas   UVUS:MFC0613
 
 ## FOLDER'S STRUCTURE
