@@ -1,7 +1,7 @@
 # Programming Fundamentals' Second Semester Project (Course 2022/23)
 Author/a: Óscar Alfonso Mitillo López-Barajas   UVUS:MFC0613
 
-## Folder's structure
+## *Folder's structure*
 
 * **/src**: Directory with the source code.
   * **fp.types**: Package containing project types.
@@ -10,9 +10,11 @@ Author/a: Óscar Alfonso Mitillo López-Barajas   UVUS:MFC0613
 * **/data**: Contains the project dataset.
     * **WorldCupMatches.csv**: .csv file containing data from all the World Cup matches of the history until 2014.
     
-## *Dataset's* structure
+## *Dataset's structure*
 
-El dataset original Chess Game Dataset se puede obtener de la URL [https://www.kaggle.com/datasnaek/chess](https://www.kaggle.com/datasnaek/chess). Originalmente tiene 16 columnas y cada fila contiene datos sobre una partida de ajedrez jugada en la plataforma lichess.com. El dataset usado en este proyecto tiene 11 columna, 9 se han tomado del dataset original, y dos, la fecha y la duración de las partidas, se han generado de forma aleatoria. A continuación se describen las 11 columnas del dataset:
+CONTINUARÁ SIENDO EXPLICADO CONFORME VAYA SIENDO DESARROLLADO EL PROYECTO, MIENTRAS TANTO, HAY ANOTACIONES Y COMENTARIOS A LO LARGO DE LOS ARCHIVOS.
+
+ Originalmente tiene 16 columnas y cada fila contiene datos sobre una partida de ajedrez jugada en la plataforma lichess.com. El dataset usado en este proyecto tiene 11 columna, 9 se han tomado del dataset original, y dos, la fecha y la duración de las partidas, se han generado de forma aleatoria. A continuación se describen las 11 columnas del dataset:
 
 * **rated**: de tipo booleano,  indica si las partidas han sido calificadas o no, es decir si
 son partidas amistosas o de tipo clasificatorio.
