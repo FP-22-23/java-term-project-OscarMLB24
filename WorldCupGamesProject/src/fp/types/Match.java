@@ -104,7 +104,6 @@ public class Match implements Comparable<Match> {
 		if(homeTeamGoals != null) {
 			Checkers.check("The home team goals are not correct", homeTeamGoals>=0);
 		}
-		
 		if(awayTeamGoals != null) {
 			Checkers.check("The away team goals are not correct", awayTeamGoals>=0);
 		}
@@ -222,35 +221,42 @@ public class Match implements Comparable<Match> {
 	}
 	
 	public void setHomeTeamGoals(Integer homeTeamGoals) {
+		
 		Checkers.check("The goals are not correct", homeTeamGoals>=0);
 		this.homeTeamGoals = homeTeamGoals;
 	}
 
 	public void setAwayTeamGoals(Integer awayTeamGoals) {
+		
 		Checkers.check("The goals are not correct", awayTeamGoals>=0);
 		this.awayTeamGoals = awayTeamGoals;
 	}
 
 	public void setWinConditions(String winConditions) {
+		
 		this.winConditions = winConditions;
 	}
 
 	public void setHalfTimeHomeGoals(Integer halfTimeHomeGoals) {
+		
 		Checkers.check("The goals are not correct", halfTimeHomeGoals>=0);
 		this.halfTimeHomeGoals = halfTimeHomeGoals;
 	}
 
 	public void setHalfTimeAwayGoals(Integer halfTimeAwayGoals) {
+		
 		Checkers.check("The goals are not correct", halfTimeAwayGoals>=0);
 		this.halfTimeAwayGoals = halfTimeAwayGoals;
 	}
 
 	public void setHomeTeamInitials(String homeTeamInitials) {
+		
 		Checkers.check("The initials of the team are not correct", homeTeamInitials.length()==3);
 		this.homeTeamInitials = homeTeamInitials;
 	}
 
 	public void setAwayTeamInitials(String awayTeamInitials) {
+		
 		Checkers.check("The initials of the team are not correct", awayTeamInitials.length()==3);
 		this.awayTeamInitials = awayTeamInitials;
 	}
@@ -270,18 +276,32 @@ public class Match implements Comparable<Match> {
 	}
 	
 	public String shortFormat() {
-		return stage + "(" + dateTime.getYear() + ") ==> " + homeTeamName + " " + homeTeamGoals + "-" + awayTeamGoals + " " + awayTeamName + " (" + getResult() + ")";
+		
+		return stage.toUpperCase() + "(" + dateTime.getYear() + ") : " + homeTeamName + "(" + homeTeamInitials.toUpperCase() + ")" + " " + homeTeamGoals + "-" + awayTeamGoals + " " + awayTeamName + "(" + awayTeamInitials.toUpperCase() + ")";
 	}
 	
 	//equality criteria
 	
+	
+
+	//natural order criteria
+	
+	public int compareTo(Match m) {
+		
+		Integer res = getDateTime().compareTo(m.getDateTime());
+		return res;
+	}
+
+	//methods
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(matchId);
+		return Objects.hash(awayTeamName, homeTeamName, stage, year);
 	}
 
 	@Override
 	public boolean equals(Object obj) {
+		
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -289,17 +309,9 @@ public class Match implements Comparable<Match> {
 		if (getClass() != obj.getClass())
 			return false;
 		Match other = (Match) obj;
-		return Objects.equals(matchId, other.matchId);
+		return Objects.equals(awayTeamName, other.awayTeamName) && Objects.equals(homeTeamName, other.homeTeamName)
+				&& Objects.equals(stage, other.stage) && Objects.equals(year, other.year);
 	}
-
-	//natural order criteria
-	
-	public int compareTo(Match m) {
-		Integer res = getDateTime().compareTo(m.getDateTime());
-		return res;
-	}
-
-	//methods
 
 	public void addReferee(String r) {
 		referees.add(r);

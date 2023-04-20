@@ -1,40 +1,27 @@
 package fp.test;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-
-import fp.types.Location;
 import fp.types.Match;
 import fp.types.MatchFactory;
 import fp.types.Matches;
 
 public class TestWorldCupMatch {
 	public static void main(String[] args) {
-		//Match w = new Match("1930;13 Jul 1930 - 15:00;Group 1;Pocitos;Montevideo;France;4;1;Mexico; ;4444;3;0;LOMBARDI Domingo (URU);CRISTOPHE Henry (BEL);REGO Gilberto (BRA);201;1096;FRA;MEX;6,26");
-		/*Location l = new Location("Pocitos","Monteviedo");
-		List<String> list = new ArrayList<String>();
-		Match m = new Match(1930,LocalDateTime.of(1930, 07, 12, 15, 0), "Group 1" ,l, "France" , 4, 1, "Mexico", "", 4444, 3, 0, list , 201, 1096, "FRA", "MEX", 6.26);
-		Match n = new Match(LocalDateTime.of(1930, 07, 12, 15, 0), "Group 4", "USA", 3, 0, "Belgium", 1090);
-		System.out.println(m.toString());
-		m.setHomeTeamGoals(2);
-		m.setAwayTeamGoals(2);
-		m.setHalfTimeHomeGoals(1);
-		m.setHalfTimeAwayGoals(0);
-		m.setHomeTeamInitials("FRN");
-		m.setAwayTeamInitials("MXC");
-		System.out.println(m.toString());
-		System.out.println(m.shortFormat());
-		System.out.println(m.hashCode());
-		System.out.println(m.equals(n));
-		System.out.println(m.compareTo(n));
-		m.addReferee("LOMBARDI Domingo (URU)");
-		System.out.println(m.toString());
-		m.removeReferee();
-		System.out.println(m.toString());*/
-
+		
 		Matches matches = MatchFactory.readMatches("data/WorldCupMatches.csv");
-		System.out.println(matches.checkMatchData("year","2010"));
+		
+		System.out.println(matches.getNumberMatches());
+		
+		Match m = matches.getMatch(0);
+		matches.removeMatch(0);
+		System.out.println(matches.getNumberMatches());
+		matches.addMatch(m);
+		System.out.println(matches.getNumberMatches());
+		
+		//System.out.println(matches.checkMatchData("year", "2010"));
+		//System.out.println(matches.averageValue("attendance"));
+		//System.out.println(matches.filterBy("dateTime", "05 Jul 2014 - 13:00"));
+		//System.out.println(matches.matchesPerCountry());
+		//System.out.println(matches.wonMatchesPerCountry());
 	}
 }
 

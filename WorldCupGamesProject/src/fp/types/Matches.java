@@ -2,33 +2,38 @@ package fp.types;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.AbstractMap;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 import java.util.Objects;
 import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import fp.utils.Checkers;
-
 public class Matches {
 	 
 	//properties
 	
-	private SortedSet<Match> matches;
+	private List<Match> matches;
 	
 	//constructors
 	
 	//1. With no parameters
 	
 	public Matches() {
-		matches = new TreeSet<Match>();
+		matches = new ArrayList<Match>();
 	}
 	
 	//2. With a stream
 	
 	public Matches(Stream<Match> sm) {
-		matches = sm.collect(Collectors.toCollection(TreeSet::new));
+		matches = sm.collect(Collectors.toList());
 	}
 	
 	//string conversion
@@ -47,6 +52,7 @@ public class Matches {
 
 	@Override
 	public boolean equals(Object obj) {
+		
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -58,6 +64,12 @@ public class Matches {
 	}
 	
 	//methods
+	
+	//0. Get a match by the index
+	
+	public Match getMatch(int i) {
+		return matches.get(i);
+	}
 	
 	//1. Number of matches in the set
 	
@@ -83,170 +95,350 @@ public class Matches {
 		matches.remove(m);
 	}
 	
+	public void removeMatch(int i) {
+		matches.remove(i);
+	}
+	
 	//5. Check if there is a match with a specific value in one of their variables
-	   
+	
 	public Boolean checkMatchData(String variable, String s) {
 
-		Boolean res = false;
-		
-		for(Match m: matches) {
+		if(variable.equals("year")) {
 
-			if(variable == "year"){
-				res = checkInteger(s,m.getYear());
-				break;
-			}
-			if(variable.equals("homeTeamGoals")){
-				res = checkInteger(s,m.getHomeTeamGoals());
-				break;
-			}
-			if(variable.equals("awayTeamGoals")){
-				res = checkInteger(s,m.getAwayTeamGoals());
-				break;
-			}
-			if(variable.equals("attendance")){
-				res = checkInteger(s,m.getAttendance());
-				break;
-			}
-			if(variable.equals("halfTimeHomeGoals")){
-				res = checkInteger(s,m.getHalfTimeHomeGoals());
-				break;
-			}
-			if(variable.equals("halfTimeAwayGoals")){
-				res = checkInteger(s,m.getHalfTimeAwayGoals());
-				break;
-			}
-			if(variable.equals("roundId")){
-				res = checkInteger(s,m.getRoundId());
-				break;
-			}
-			if(variable.equals("matchId")){
-				res = checkInteger(s,m.getMatchId());
-				break;
-			}
+			return matches.stream()
+					.anyMatch(m -> m.getYear().equals(Integer.valueOf(s)));
+		}
+		else if(variable.equals("homeTeamGoals")) {
 			
-			///////////////////////////////////////////////
+			return matches.stream()
+					.anyMatch(m -> m.getHomeTeamGoals().equals(Integer.valueOf(s)));
+		}
+		else if(variable.equals("awayTeamGoals")) {
 			
-			if(variable.equals("stage")) {
-				res = checkString(s,m.getStage());
-				break;
-			}
-			if(variable.equals("homeTeamName")) {
-				res = checkString(s,m.getHomeTeamName());
-				break;
-			}
-			if(variable.equals("awayTeamName")) {
-				res = checkString(s,m.getAwayTeamName());
-				break;
-			}
-			if(variable.equals("winConditions")) {
-				res = checkString(s,m.getWinConditions());
-				break;
-			}
-			if(variable.equals("homeTeamInitials")) {
-				res = checkString(s,m.getHomeTeamInitials());
-				break;
-			}
-			if(variable.equals("awayTeamInitials")) {
-				res = checkString(s,m.getAwayTeamInitials());
-				break;
-			}
-			///////////////////////////////////////////////
+			return matches.stream()
+					.anyMatch(m -> m.getAwayTeamGoals().equals(Integer.valueOf(s)));
+		}
+		else if(variable.equals("attendance")) {
 			
-			if(variable.equals("firstShotMinute")) {
-				if(m.getFirstShotMinute()==Double.valueOf(s)) {
-					res = true;
-					break;
-				}
-			}
+			return matches.stream()
+					.anyMatch(m -> m.getAttendance().equals(Integer.valueOf(s)));
+		}
+		else if(variable.equals("halfTimeHomeGoals")) {
 			
-			if(variable.equals("location")) {
-				String[] data = s.replace("(", "").replace(")", "").replace("[", "").replace("]", "").split(",");
-				if(m.getLocation().getStadium()==data[0].strip() && m.getLocation().getCity()==data[1]) {
-					res=true;
-					break;
-				}
-			}
+			return matches.stream()
+					.anyMatch(m -> m.getHalfTimeHomeGoals().equals(Integer.valueOf(s)));
+		}
+		else if(variable.equals("halfTimeAwayGoals")) {
 			
-			if(variable.equals("referees")) {
-				String[] data= s.replace("(", "").replace(")", "").replace("[", "").replace("]", "").split(",");
-				if(m.getReferees().contains(data[0].strip()) && m.getReferees().contains(data[1].strip()) && m.getReferees().contains(data[2].strip())) {
-					res=true;
-					break;
-				}
-			}
+			return matches.stream()
+					.anyMatch(m -> m.getHalfTimeAwayGoals().equals(Integer.valueOf(s)));
+		}
+		else if(variable.equals("matchId")) {
 			
-			if(variable.equals("dateTime")) {
-				LocalDateTime dt = LocalDateTime.parse(s.trim(),DateTimeFormatter.ofPattern("dd MMM yyyy - HH:mm"));
-				if(m.getDateTime()==dt) {
-					res=true;
-					break;
-				}
+			return matches.stream()
+					.anyMatch(m -> m.getMatchId().equals(Integer.valueOf(s)));
+		}
+		else if(variable.equals("roundId")) {
+			
+			return matches.stream()
+					.anyMatch(m -> m.getRoundId().equals(Integer.valueOf(s)));
+		}
+		else if(variable.equals("stage")) {
+			
+			return matches.stream()
+					.anyMatch(m -> m.getStage().toLowerCase().equals(s.toLowerCase()));
+		}
+		else if(variable.equals("homeTeamName")) {
+			
+			return matches.stream()
+					.anyMatch(m -> m.getHomeTeamName().toLowerCase().equals(s.toLowerCase()));
+		}
+		else if(variable.equals("awayTeamName")) {
+			
+			return matches.stream()
+					.anyMatch(m -> m.getAwayTeamName().toLowerCase().equals(s.toLowerCase()));
+		}
+		else if(variable.equals("homeTeamInitials")) {
+			
+			return matches.stream()
+					.anyMatch(m -> m.getHomeTeamInitials().toLowerCase().equals(s.toLowerCase()));
+		}
+		else if(variable.equals("awayTeamInitials")) {
+			
+			return matches.stream()
+					.anyMatch(m -> m.getAwayTeamInitials().toLowerCase().equals(s.toLowerCase()));
+		}
+		else if(variable.equals("firstShotMinute")) {
+			
+			return matches.stream()
+					.anyMatch(m -> m.getFirstShotMinute().equals(Double.valueOf(s)));
+		}
+		else if(variable.equals("location")) {																		// NO FUNCIONA
+
+			String[] data = s.replace("(", "").replace(")", "").replace("[", "").replace("]", "").split(",");
+			System.out.println(data[0]);
+			System.out.println(data[1]);
+			return matches.stream()
+					.anyMatch(m -> m.getLocation().getStadium().toLowerCase().equals(data[0].trim().toLowerCase()) && m.getLocation().getCity().toLowerCase().equals(data[1].trim().toLowerCase()));
+		}
+		if(variable.equals("referees")) {
+			
+			return matches.stream()
+	                  .flatMap(m -> m.getReferees().stream())
+	                  .anyMatch(r -> r.contains(s));
+		}
+		if(variable.equals("dateTime")) {
+			try {
+				LocalDateTime dt = LocalDateTime.parse(s.trim(),DateTimeFormatter.ofPattern("dd MMM yyyy - HH:mm", Locale.ENGLISH));
+				return matches.stream()
+						.anyMatch(m -> m.getDateTime().isEqual(dt));
+			}
+			catch(DateTimeParseException e) {
+				throw new IllegalArgumentException("La fecha proporcionada no es válida", e);
 			}
 
 		}
-		
-		return res;
+		else {
+			return null;
+		}
 	}
 	
-	private Boolean checkInteger(String value,Integer i) {
-
-		Boolean res = false;
-		Checkers.check("Not valid integer value", i>0);
-
-		if(Integer.valueOf(value) == i) {
-			res = true;
-		}
-		return res;
-	}
-	
-	private Boolean checkString(String value,String i) {
-		
-		Boolean res = false;
-
-		if(value.toLowerCase().equals(i.toLowerCase())) {
-			res = true;
-		}
-		return res;
-	}
+	//6. Calculate the average value of a numeric variable
 	
 	public Double averageValue(String variable) {
 	
-		Integer total = 0;
-		Double sum = 0.0;
-		
-		for(Match m: matches){
+		if(variable.equals("attendance")) {
+			return matches.stream()
+					.mapToLong(m -> m.getAttendance() != null ? m.getAttendance() : 0)
+					.average().orElse(0.0);
+		}
+		else if(variable.equals("homeTeamGoals")) {
+			return matches.stream()
+					.mapToLong(m -> m.getHomeTeamGoals())
+					.average().orElse(0.0);
+		}
+		else if(variable.equals("awayTeamGoals")) {
+			return matches.stream()
+					.mapToLong(m -> m.getAwayTeamGoals())
+					.average().orElse(0.0);
+		}
+		else if(variable.equals("halfTimeHomeGoals")) {
+			return matches.stream()
+					.mapToLong(m -> m.getHalfTimeHomeGoals())
+					.average().orElse(0.0);
+		}
+		else if(variable.equals("halfTimeAwayGoals")) {
+			return matches.stream()
+					.mapToLong(m -> m.getHalfTimeAwayGoals())
+					.average().orElse(0.0);
+		}
+		else if(variable.equals("firstShotMinute")) {
+			return matches.stream()
+					.mapToDouble(m -> m.getFirstShotMinute())
+					.average().orElse(0.0);
+		}
+		else {
+			return null;
+		}
+	}
+	
+	//7. Filter the list of maps by a specific property
+	
+	public List<Match> filterBy(String variable, String s) {
+
+		if(variable.equals("year")) {
+
+			return matches.stream()
+					.filter(m -> m.getYear().equals(Integer.valueOf(s)))
+					.toList();
+		}
+		else if(variable.equals("HomeTeamGoals")) {
 			
-			if(variable.equals("attendance") && m.getAttendance()!=null) {
-				
-				total++;
-				sum += m.getAttendance();
+			return matches.stream()
+					.filter(m -> m.getHomeTeamGoals().equals(Integer.valueOf(s)))
+					.toList();
+		}
+		else if(variable.equals("AwayTeamGoals")) {
+			
+			return matches.stream()
+					.filter(m -> m.getAwayTeamGoals().equals(Integer.valueOf(s)))
+					.toList();
+		}
+		else if(variable.equals("attendance")) {
+			
+			return matches.stream()
+					.filter(m -> m.getAttendance().equals(Integer.valueOf(s)))
+					.toList();
+		}
+		else if(variable.equals("halfTimeHomeGoals")) {
+			
+			return matches.stream()
+					.filter(m -> m.getHalfTimeHomeGoals().equals(Integer.valueOf(s)))
+					.toList();
+		}
+		else if(variable.equals("halfTimeAwayGoals")) {
+			
+			return matches.stream()
+					.filter(m -> m.getHalfTimeAwayGoals().equals(Integer.valueOf(s)))
+					.toList();
+		}
+		else if(variable.equals("matchId")) {
+			
+			return matches.stream()
+					.filter(m -> m.getMatchId().equals(Integer.valueOf(s)))
+					.toList();
+		}
+		else if(variable.equals("roundId")) {
+			
+			return matches.stream()
+					.filter(m -> m.getRoundId().equals(Integer.valueOf(s)))
+					.toList();
+		}
+		else if(variable.equals("stage")) {
+			
+			return matches.stream()
+					.filter(m -> m.getStage().toLowerCase().equals(s.toLowerCase()))
+					.toList();
+		}
+		else if(variable.equals("homeTeamName")) {
+			
+			return matches.stream()
+					.filter(m -> m.getHomeTeamName().toLowerCase().equals(s.toLowerCase()))
+					.toList();
+		}
+		else if(variable.equals("awayTeamName")) {
+			
+			return matches.stream()
+					.filter(m -> m.getAwayTeamName().toLowerCase().equals(s.toLowerCase()))
+					.toList();
+		}
+		else if(variable.equals("homeTeamInitials")) {
+			
+			return matches.stream()
+					.filter(m -> m.getHomeTeamInitials().toLowerCase().equals(s.toLowerCase()))
+					.toList();
+		}
+		else if(variable.equals("awayTeamInitials")) {
+			
+			return matches.stream()
+					.filter(m -> m.getAwayTeamInitials().toLowerCase().equals(s.toLowerCase()))
+					.toList();
+		}
+		else if(variable.equals("firstShotMinute")) {
+			
+			return matches.stream()
+					.filter(m -> m.getFirstShotMinute().equals(Double.valueOf(s)))
+					.toList();
+		}
+		else if(variable.equals("location")) {																		// NO FUNCIONA
+
+			String[] data = s.replace("(", "").replace(")", "").replace("[", "").replace("]", "").split(",");
+			System.out.println(data[0]);
+			System.out.println(data[1]);
+			return matches.stream()
+					.filter(m -> m.getLocation().getStadium().toLowerCase().equals(data[0].trim().toLowerCase()) && m.getLocation().getCity().toLowerCase().equals(data[1].trim().toLowerCase()))
+					.toList();
+		}
+		if(variable.equals("referees")) {
+
+			return matches.stream()
+	                  .filter(m -> m.getReferees().stream().anyMatch(r -> r.contains(s)))
+	                  .collect(Collectors.toList());
+		}
+		if(variable.equals("dateTime")) {
+			try {
+				LocalDateTime dt = LocalDateTime.parse(s.trim(),DateTimeFormatter.ofPattern("dd MMM yyyy - HH:mm", Locale.ENGLISH));
+				return matches.stream()
+						.filter(m -> m.getDateTime().isEqual(dt))
+						.toList();
 			}
-			
-			if(variable.equals("homeTeamGoals") && m.getHomeTeamGoals()!=null) {
-				
-				total++;
-				sum += m.getHomeTeamGoals();
-			}
-			
-			if(variable.equals("awayTeamGoals") && m.getAwayTeamGoals()!=null) {
-				
-				total++;
-				sum += m.getAwayTeamGoals();
-			}
-			
-			if(variable.equals("halfTimeHomeGoals") && m.getHalfTimeHomeGoals()!=null) {
-				
-				total++;
-				sum += m.getHalfTimeHomeGoals();
-			}
-			
-			if(variable.equals("halfTimeAwayGoals") && m.getHalfTimeAwayGoals()!=null) {
-				
-				total++;
-				sum += m.getHalfTimeAwayGoals();
+			catch(DateTimeParseException e) {
+				throw new IllegalArgumentException("La fecha proporcionada no es válida", e);
 			}
 		}
-		return sum/total;
+		else {
+			return null;
+		}
 	}
+	
+	//8. Returns a map where the keys are names of the countries and the values the matches they have played
 	 
+	public Map<String, List<Match>> matchesPerCountry(){
+	
+		Map<String, List<Match>> res = new HashMap<>();
+		
+		for(Match m: matches) {
+			if(res.containsKey(m.getHomeTeamName())) {
+				res.get(m.getHomeTeamName()).add(m);
+			}
+			else {
+				res.put(m.getHomeTeamName(), new ArrayList<Match>());
+				res.get(m.getHomeTeamName()).add(m);
+			}
+			if (res.containsKey(m.getAwayTeamName())) {
+				res.get(m.getAwayTeamName()).add(m);
+			}
+			else {
+				res.put(m.getAwayTeamName(), new ArrayList<Match>());
+				res.get(m.getAwayTeamName()).add(m);
+			}
+		}
+		return res;
+	}
+
+	/*public Map<String, List<Match>> matchesPerCountry2() {
+    return matches.stream()
+        .flatMap(m -> Stream.of(
+            new AbstractMap.SimpleEntry<>(m.getHomeTeamName(), m),
+            new AbstractMap.SimpleEntry<>(m.getAwayTeamName(), m)
+        ))
+        .collect(Collectors.groupingBy(
+            Map.Entry::getKey,
+            TreeMap::new,
+            Collectors.mapping(Map.Entry::getValue, Collectors.toList())
+        ));
+}*/
+
+	//9. Returns a map where the keys are names of the countries and the values the number of matches won
+
+	public Map<String, Integer> wonMatchesPerCountry(){
+
+		Map<String, Integer> res = new HashMap<>();
+
+		for(Match m: matches) {
+
+			Boolean winLocal = m.getHomeTeamGoals()>m.getAwayTeamGoals();
+
+			if(winLocal) {
+				if(res.containsKey(m.getHomeTeamName())) {
+					res.put(m.getHomeTeamName(), res.get(m.getHomeTeamName()) + 1);
+				}
+				else {
+					res.put(m.getHomeTeamName(), 1);
+				}
+			}
+			else {
+				if(res.containsKey(m.getAwayTeamName())) {
+					res.put(m.getAwayTeamName(), res.get(m.getAwayTeamName()) + 1);
+				}
+				else {
+					res.put(m.getAwayTeamName(), 1);
+				}
+			}
+		}
+		return res;
+	}
+
+	/*public Map<String, Long> wonMatchesPerCountry2() {
+	    return matches.stream()
+	            .flatMap(m -> Stream.of(
+	                    new AbstractMap.SimpleEntry<>(m.getHomeTeamName(), m.getHomeTeamGoals() > m.getAwayTeamGoals()),
+	                    new AbstractMap.SimpleEntry<>(m.getAwayTeamName(), m.getAwayTeamGoals() > m.getHomeTeamGoals())))
+	            .filter(Map.Entry::getValue)
+	            .collect(Collectors.groupingBy(Map.Entry::getKey, Collectors.counting()))
+	            .entrySet().stream()
+	            .sorted(Map.Entry.comparingByKey())
+	            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (v1, v2) -> v1, LinkedHashMap::new));
+	}*/
 }
+

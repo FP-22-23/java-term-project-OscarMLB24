@@ -55,31 +55,37 @@ public class MatchFactory {
 		Double firstShotMinute = null;
 
 		if(values[0] != "") {
+			
 			year = Integer.valueOf(values[0].replace("(", "").trim());	
 			Checkers.check("The year is not correct", year>=1930 && year<=LocalDate.now().getYear() && (year-1930)%4==0 && year==dateTime.getYear());
 		}
 
 		if(values[6] != "") {
+			
 			homeTeamGoals = Integer.valueOf(values[6].trim());
 			Checkers.check("The home team goals are not correct", homeTeamGoals>=0);
 		}
 		
 		if(values[7] != "") {
+			
 			awayTeamGoals = Integer.valueOf(values[7].trim());
 			Checkers.check("The away team goals are not correct", awayTeamGoals>=0);
 		}
 
 		if(values[10] != "") {
+			
 			attendance = Integer.valueOf(values[10].trim());
 			Checkers.check("The attendace is not correct", attendance>=0);
 		}
 
 		if(values[11] != "") {
+			
 			halfTimeHomeGoals = Integer.valueOf(values[11].trim());
 			Checkers.check("The half-time home team goals are not correct", halfTimeHomeGoals>=0 && halfTimeHomeGoals<=homeTeamGoals);
 		}
 
 		if(values[12] != "") {
+			
 			halfTimeAwayGoals = Integer.valueOf(values[12].trim());
 			Checkers.check("The half-time away team goals are not correct", halfTimeAwayGoals>=0 && halfTimeAwayGoals<=awayTeamGoals);
 		}
@@ -89,16 +95,19 @@ public class MatchFactory {
 		referees.add(values[15]);
 
 		if(values[16] != "") {
+			
 			roundId = Integer.valueOf(values[16].trim());
 			Checkers.check("The round id is not correct", roundId>=0);
 		}
 		
 		if(values[17] != "") {
+			
 			matchId = Integer.valueOf(values[17].trim());
 			Checkers.check("The match id is not correct", matchId>=0);
 		}
 
 		if(values[20] != "") {
+			
 			firstShotMinute = Double.valueOf(values[20].replace(")", "").trim());
 			Checkers.check("The minute of the first shot is not correct", firstShotMinute>=0.0);
 		}
