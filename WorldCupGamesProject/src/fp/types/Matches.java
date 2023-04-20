@@ -385,20 +385,7 @@ public class Matches {
 		}
 		return res;
 	}
-
-	/*public Map<String, List<Match>> matchesPerCountry2() {
-    return matches.stream()
-        .flatMap(m -> Stream.of(
-            new AbstractMap.SimpleEntry<>(m.getHomeTeamName(), m),
-            new AbstractMap.SimpleEntry<>(m.getAwayTeamName(), m)
-        ))
-        .collect(Collectors.groupingBy(
-            Map.Entry::getKey,
-            TreeMap::new,
-            Collectors.mapping(Map.Entry::getValue, Collectors.toList())
-        ));
-}*/
-
+	
 	//9. Returns a map where the keys are names of the countries and the values the number of matches won
 
 	public Map<String, Integer> wonMatchesPerCountry(){
@@ -428,17 +415,5 @@ public class Matches {
 		}
 		return res;
 	}
-
-	/*public Map<String, Long> wonMatchesPerCountry2() {
-	    return matches.stream()
-	            .flatMap(m -> Stream.of(
-	                    new AbstractMap.SimpleEntry<>(m.getHomeTeamName(), m.getHomeTeamGoals() > m.getAwayTeamGoals()),
-	                    new AbstractMap.SimpleEntry<>(m.getAwayTeamName(), m.getAwayTeamGoals() > m.getHomeTeamGoals())))
-	            .filter(Map.Entry::getValue)
-	            .collect(Collectors.groupingBy(Map.Entry::getKey, Collectors.counting()))
-	            .entrySet().stream()
-	            .sorted(Map.Entry.comparingByKey())
-	            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (v1, v2) -> v1, LinkedHashMap::new));
-	}*/
 }
 
