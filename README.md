@@ -3,12 +3,12 @@ Author/a: Óscar Alfonso Mitillo López-Barajas   UVUS:MFC0613
 
 ## FOLDER'S STRUCTURE
 
-* **/src**: Directorio con el código fuente.
-  * **fp.ajedrez**: Paquete que contiene los tipos del proyecto.
-  * **fp.ajedrez.test**: Paquete que contiene las clases de test del proyecto.
-  * **fp.utiles**:  Paquete que contiene las clases de utilidad. 
-* **/data**: Contiene el dataset del proyecto.
-    * **chess.csv**: Archivo csv que contiene datos de diferentes partidas de ajedrez.
+* **/src**: Directory with the source code.
+  * **fp.types**: Package containing project types.
+  * **fp.test**: Package containing the test classes of the project.
+  * **fp.utils**:  Package containing the utility classes (checkers). 
+* **/data**: Contains the project dataset.
+    * **WorldCupMatches.csv**: .csv file containing data from all the World Cup matches of the history until 2014.
     
 ## Estructura del *dataset*
 
