@@ -54,7 +54,7 @@ Represents one Football World Cup match.
 - _awayTeamName_, of type _String_, public. Indicates the name of the team playing as visitant.
 - _awayTeamGoals_, of type _Integer_, public. Indicates the visitant team number of goals.
 - _winConditions_, of type _String_, public. Description of the victory (it is always " ").
-- _attendance_, of type _Integer_, public. Indicates the number of spectators.
+- _attendance_, of type _Integer_, public. Indicates the number of spectators (It can be `null` if there is no information).
 - _halfTimeHomeGoals_, of type _Integer_, public. Indicates the local team number of goals before the break.
 - _halfTimeAwayGoals_, of type _Integer_, public. Indicates the visitant team number of goals before the break.
 - _referees_, of type _List\<String\>_, public. Contains the name of the 3 referees.
@@ -67,14 +67,14 @@ Represents one Football World Cup match.
 **Derived properties**:
 
 - _result_, of type _Result_, public. It can take LOCAL_WINS (local goals > visitant goals), VISITANT_WINS (local goals < visitant goals) or DRAW (local goals = visitant goals) as values.
-- _recent_, of type _String_, public. Indicates the name of the third referee.
-- _totalGoals_, of type _String_, public. Indicates the name of the third referee.
-- _winner_, of type _String_, public. Indicates the name of the third referee.
+- _recent_, of type _Boolean_, public. It takes False as value if that match was played before the 21th century, True otherwise.
+- _totalGoals_, of type _Integer_, public. Indicates the total number of goals between both teams.
+- _winner_, of type _String_, public. Indicates the winner.
 
-**Constructores**: 
+**Constructors**: 
 
-- C1: Tiene un parámetro por cada propiedad básica del tipo.
-- C2: Crea un objeto de tipo ```Partida``` a partir de los siguientes parámetros: ```Boolean clasificatoria, TipoVictoria tipoVictoria, Resultado resultado, String jugadorBlancas, String jugadorNegras, Integer ratingBlancas, Integer ratingNegras, String movimientos, String apertura, LocalDate fecha, Integer duracion```.
+- C1: It has one parameter for each basic property of the type.
+- C2: It creates a `Match` object from the following parameters: ```LocalDateTime localDate, String stage, String homeTeamName, Integer homeTeamGoals, Integer awayTeamGoals, String awayTeamName, Integer matchId```.
 
 **Restricciones**:
  
