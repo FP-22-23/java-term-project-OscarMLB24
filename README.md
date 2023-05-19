@@ -12,25 +12,31 @@ Author/a: Óscar Alfonso Mitillo López-Barajas   UVUS:MFC0613
     
 ## *Dataset's structure*
 
-CONTINUARÁ SIENDO EXPLICADO CONFORME VAYA SIENDO DESARROLLADO EL PROYECTO, MIENTRAS TANTO, HAY ANOTACIONES Y COMENTARIOS A LO LARGO DE LOS ARCHIVOS.
+Originally, the dataset had 20 columns but it was expanded by adding one more column containing the minute and second, expressed as a Double value, of the first shot which was randomly generated. Each row contains information about one Football World Cup match until the World Cup of 2014 played in Brasil. This 21 columns are now explained:
 
- Originalmente tiene 16 columnas y cada fila contiene datos sobre una partida de ajedrez jugada en la plataforma lichess.com. El dataset usado en este proyecto tiene 11 columna, 9 se han tomado del dataset original, y dos, la fecha y la duración de las partidas, se han generado de forma aleatoria. A continuación se describen las 11 columnas del dataset:
+* **year**: of type Integer,  indicates the year.
+* **dateTime**: of type LocalDateTime, indicates the date and time.
+* **stage**: of type String, indicates the stage of the tournament (Final, Semi-finals. quarter-finals...).
+* **stadium**: of type String, indicates the name of the stadium.
+* **city**: of type String, indicates the name of the city.
+* **homeTeamName**: of type String, indicates the name of the team playing as local.
+* **homeTeamGoals**: of type Integer, indicates the local team number of goals. 
+* **awayTeamName**: of type String, indicates the name of the team playing as visitant.
+* **awayTeamGoals**: of type Integer, indicates the visitant team number of goals.
+* **winConditions**: of type String, description of the victory (it does not take any value in any match).
+* **attendance**: of type Integer,  indicates the number of spectators.
+* **halfTimeHomeGoals**: of type Integer,  indicates the local team number of goals before the break.
+* **halfTimeAwayGoals**: of type Integer,  indicates the visitant team number of goals before the break.
+* **referee**: of type String,  indicates the name of the main referee.
+* **assistant1**: of type String,  indicates the name of the second referee.
+* **assistant2**: of type String,  indicates the name of the third referee.
+* **roundId**: of type Integer,  indicates the round identification.
+* **matchId**: of type Integer,  indicates the match identification.
+* **homeTeamInitials**: of type String, indicates the initials of the team playing as local.
+* **awayTeamInitials**: of type String, indicates the initials of the team playing as visitant.
+* **firstShotMinute**: of type Double, indicates the minute when the first shot was taken.
 
-* **rated**: de tipo booleano,  indica si las partidas han sido calificadas o no, es decir si
-son partidas amistosas o de tipo clasificatorio.
-* **victory_status**: de tipo cadena, indica el tipo de victoria. Puede tomar los valores: outoftime, resign, mate or draw.
-* **winner**: de tipo cadena, indica el resultado de la partida. Puede tomar los valores: white, black o draw, para indicar si ganan las blancas, las negras, o hay tablas.
-* **white_id**: de tipo cadena, contiene el identificador del jugador de blancas.
-* **white_rating**: de tipo entero, tiene el valor ELO del jugador de blancas. El valor ELO es un número que se usa en lichess.com para hacer un ranking de los jugadores.
-* **black_id**: de tipo cadena, contiene el identificador del jugador de negras.
-* **black_rating**: de tipo entero, tiene el valor ELO del jugador de negras. 
-* **moves**: de tipo cadena, contiene una secuencia con los movimientos de la partida. Los movimientos están separados por espacios en blanco. Por ejemplo, ```d4 d5 c4 c6 cxd5 e6 dxe6 fxe6 Nf3 Bb4+ Nc3 Ba5 Bf4```.
-* **opening_name**: de tipo cadena, indica la salida y la defensa de la partida. Esto no se
-corresponde con el primer o segundo movimiento, sino que son las salidas y sus distintas variantes, por ejemplo, ```Queen's Pawn Game: Mason Attack```.
-* **fecha**: de tipo fecha. Indica la fecha en la que se jugó la partida.
-* **duracion**: de tipo entero. Indica la duración en minutos de la partida.
-
-## Tipos implementados
+## Implemented types
 
 Los tipos que se han implementado en el proyecto son los siguientes:
 
