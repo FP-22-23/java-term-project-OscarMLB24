@@ -66,7 +66,6 @@ Represents one Football World Cup match.
 
 **Derived properties**:
 
-- _result_, of type `Result`, public. It can take LOCAL_WINS (local goals > visitant goals), VISITANT_WINS (local goals < visitant goals) or DRAW (local goals = visitant goals) as values.
 - _recent_, of type `Boolean`, public. It takes False as value if that match was played before the 21th century, True otherwise.
 - _totalGoals_, of type `Integer`, public. Indicates the total number of goals between both teams.
 - _winner_, of type `String`, public. Indicates the winner.
@@ -88,24 +87,27 @@ Represents one Football World Cup match.
 - R8: The match identification must be greater than 0.
 - R9: The date and time must be before the current one.
 
-***Criterio de igualdad**: Dos partidas son iguales si todas sus propiedades básicas son iguales.
+***Equality criteria***: Two matches are equal if local team name, visitant team name, stage and year are equal.
 
-**Criterio de ordenación**: Por fecha, duración y número de movimientos.
+**Natural order**: By date and time.
 
-**Otras operaciones**:
+**Other methods**:
 
-- _String getMovimiento(Integer numMovimiento)_: Devuelve el movimiento dado por el número numMovimiento. Eleva ```IllegalArgumentException``` si ```numMovimiento``` no está en el intervalo [1, getNumMovimientos()]
+- _String toString()_: Returns a String with all the match information.
+- _String shortFormat()_: Returns a String with the most important information in a compressed way.
+- _void addReferee(String r)_: Adds a referee to the list `Referees`.
+- _void removeReferee()_: Removes a referee from the list `Referees`.
 
-#### Tipos auxiliares
+#### Auxiliary types
 
-- TipoVictoria, enumerado. Puede tomar los valores OUTOFTIME, RESIGN, MATE, DRAW.
-- Resultado, enumerado. Puede tomar los valores WHITE, BLACK, DRAW.
+- Result, enum. It can take LOCAL_WINS, VISITANT_WINS and DRAW as values.
+- Location, class. It has `stadium` and `city` as properties (it also has a toString method, equality criteria and natural order using both properties).
 
-### Factoría - FactoriaPartidas
-Clase de factoría para construir objetos de tipo Partidas.
+### Factory- MatchFactory
+
+Factory class to construct objects of type Matches.
 
 - _Partidas leerPartidas(String nomfich)_:Crea un objeto de tipo Partidas a partir de la información recogida en el archivo csv, cuya ruta se da como parámetro.
-
 
 ### Tipo Contenedor - Partidas
 
