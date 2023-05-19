@@ -8,7 +8,7 @@ import fp.utils.Checkers;
 
 public class Match implements Comparable<Match> {
 
-	//properties
+	// properties
 
 	private Integer year;
 	private LocalDateTime dateTime;
@@ -29,9 +29,9 @@ public class Match implements Comparable<Match> {
 	private String awayTeamInitials;
 	private Double firstShotMinute;
 
-	//constructors
+	// constructors
 	
-	//1. With all parameters
+	// 1. With all parameters
 	
 	public Match(Integer year,LocalDateTime dateTime, String stage, Location location, String homeTeamName, Integer homeTeamGoals, Integer awayTeamGoals, String awayTeamName,String winConditions, Integer attendance, Integer halfTimeHomeGoals, Integer halfTimeAwayGoals, List<String> referees, Integer roundId, Integer matchId, String homeTeamInitials, String awayTeamInitials, Double firstShotMinute) {
 		
@@ -94,7 +94,7 @@ public class Match implements Comparable<Match> {
 		this.firstShotMinute = firstShotMinute;
 	}
 
-	//2. With some parameters
+	// 2. With some parameters
 	
 	public Match(LocalDateTime dateTime, String stage, String homeTeamName, Integer homeTeamGoals, Integer awayTeamGoals, String awayTeamName, Integer matchId) {
 
@@ -120,7 +120,7 @@ public class Match implements Comparable<Match> {
 		this.matchId = matchId;
 	}
 
-	//derived properties
+	// derived properties
 
 	public MatchResult getResult() {
 		
@@ -145,8 +145,13 @@ public class Match implements Comparable<Match> {
 		}
 		return res;
 	}
+	
+	public Integer getTotalGoals() {
+		
+		return homeTeamGoals + awayTeamGoals;
+	}
 
-	//getters and setters
+	// getters and setters
 
 	public Integer getYear() {
 		return year;
@@ -261,7 +266,7 @@ public class Match implements Comparable<Match> {
 		this.awayTeamInitials = awayTeamInitials;
 	}
 	
-	//string representation
+	// string representation
 
 	@Override
 	public String toString() {
@@ -272,7 +277,7 @@ public class Match implements Comparable<Match> {
 				+ ", attendance=" + attendance + ", halfTimeHomeGoals=" + halfTimeHomeGoals + ", halfTimeAwayGoals="
 				+ halfTimeAwayGoals + ", referees=" + referees + ", roundId=" + roundId + ", matchId=" + matchId
 				+ ", homeTeamInitials=" + homeTeamInitials + ", awayTeamInitials=" + awayTeamInitials
-				+ ", firstShotMinute=" + firstShotMinute + ", result=" + getResult() + ", recent=" + getRecent() + "]";
+				+ ", firstShotMinute=" + firstShotMinute + ", result=" + getResult() + ", recent=" + getRecent() + ", totalGoals=" + getTotalGoals() + "]";
 	}
 	
 	public String shortFormat() {
@@ -280,20 +285,8 @@ public class Match implements Comparable<Match> {
 		return stage.toUpperCase() + "(" + dateTime.getYear() + ") : " + homeTeamName + "(" + homeTeamInitials.toUpperCase() + ")" + " " + homeTeamGoals + "-" + awayTeamGoals + " " + awayTeamName + "(" + awayTeamInitials.toUpperCase() + ")";
 	}
 	
-	//equality criteria
+	// equality criteria
 	
-	
-
-	//natural order criteria
-	
-	public int compareTo(Match m) {
-		
-		Integer res = getDateTime().compareTo(m.getDateTime());
-		return res;
-	}
-
-	//methods
-
 	@Override
 	public int hashCode() {
 		return Objects.hash(awayTeamName, homeTeamName, stage, year);
@@ -313,10 +306,24 @@ public class Match implements Comparable<Match> {
 				&& Objects.equals(stage, other.stage) && Objects.equals(year, other.year);
 	}
 
+	// natural order criteria
+	
+	public int compareTo(Match m) {
+
+		Integer res = getDateTime().compareTo(m.getDateTime());
+		return res;
+	}
+
+	// Methods
+
+	// 1. Adds a referee to the list of them
+
 	public void addReferee(String r) {
 		referees.add(r);
 	}
 
+	// 2. Removes a referee from the list of them
+	
 	public void removeReferee() {
 		
 		if (referees.size()>1){
