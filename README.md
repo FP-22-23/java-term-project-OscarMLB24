@@ -5,7 +5,7 @@ Author/a: Óscar Alfonso Mitillo López-Barajas   UVUS:MFC0613
 
 * **/src**: Directory with the source code.
   * **fp.types**: Package containing project types.
-  * **fp.test**: Package containing the test classes of the project.
+  * **fp.test**: Package containing the test class of the project.
   * **fp.utils**:  Package containing the utility classes (checkers). 
 * **/data**: Contains the project dataset.
     * **WorldCupMatches.csv**: .csv file containing data from all the World Cup matches of the history until 2014.
