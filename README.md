@@ -38,7 +38,7 @@ Originally, the dataset had 20 columns but it was expanded by adding one more co
 
 ## Implemented types
 
-Los tipos que se han implementado en el proyecto son los siguientes:
+The implemented types in the project are the following:
 
 ### Tipo Base - Partida
 Representa una partida de ajedrez concreta.
