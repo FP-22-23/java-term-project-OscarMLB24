@@ -40,26 +40,36 @@ Originally, the dataset had 20 columns but it was expanded by adding one more co
 
 The implemented types in the project are the following:
 
-### Tipo Base - Partida
-Representa una partida de ajedrez concreta.
-**Propiedades**:
+### Base Type - Match
+Represents one Football World Cup match.
 
-- _clasificatoria_, de tipo _Boolean_, consultable. Indica si las partidas han sido calificadas o no, es decir si son partidas amistosas o de tipo clasificatorio. 
-- _tipoVictoria_, de tipo _TipoVictoria_, consultable. Indica el tipo de victoria. Puede tomar los valores OUTOFTIME, RESIGN, MATE, DRAW.
-- _resultado_, de tipo _Resultado_, consultable. Indica el resultado de la partida. Puede tomar los valores WHITE, BLACK, DRAW.
-- _jugadorBlancas_, de tipo _String_, consultable. Contiene el identificador del jugador de blancas.
-- _jugadorNegras_, de tipo _String_, consultable. Contiene el identificador del jugador de negras.
-- _ratingBlancas_, de tipo _Integer_, consultable. Contiene el rating del jugador de blancas.
-- _ratingNegras_, de tipo _Integer_, consultable. Contiene el rating del jugador de negras.
-- _movimientos_, de tipo _List\<String\>_, consultable. Lista de movimientos de la partida.
-- _apertura_, de tipo _String_, consultable. Tipo de apertura usado en la partida.
-- _apertura_, de tipo _String_, consultable. Tipo de apertura usado en la partida.
-- _movimientoApertura_, de tipo _String_, consultable. Es el primer movimiento de la partida y, por lo tanto, se obtiene a partir del primer elemento de la lista de movimientos.
-- _numMovimientos_, de tipo _Integer_, consultable. Número de movimientos que se han realizado en la partida. Se calcula a partir del número de elementos de la lista de movimientos.
-- _jugadorGanador_, de tipo _String_, consultable. Contiene el id del jugador que gana la partida, o ```null```, si la partida ha quedado en tablas.
-- _ratingGanador_, de tipo _Integer_, consultable. Contiene el rating del jugador que gana la partida, o ```null```, si la partida ha quedado en tablas.
-- _diferenciaRatings_, de tipo _Integer_, consultable. Contiene la diferencia de ratings entre los dos jugadores de la partida (en valor absoluto).
+**Propperties**:
 
+- _year_, of type _Integer_, public. Indicates the year.
+- _dateTime_, of type _LocalDateTime_, public. Indicates the date and time.
+- _stage_, of type _String_, public. Indicates the stage of the tournament (Final, Semi-finals. quarter-finals...).
+- _location_, of type _Location_, public. object type that contains the stadium and city.
+- _homeTeamName_, of type _String_, public. Indicates the name of the team playing as local.
+- _homeTeamGoals_, of type _Integer_, public. Indicates the local team number of goals. 
+- _awayTeamName_, of type _String_, public. Indicates the name of the team playing as visitant.
+- _awayTeamGoals_, of type _Integer_, public. Indicates the visitant team number of goals.
+- _winConditions_, of type _String_, public. Description of the victory (it is always " ").
+- _attendance_, of type _Integer_, public. Indicates the number of spectators.
+- _halfTimeHomeGoals_, of type _Integer_, public. Indicates the local team number of goals before the break.
+- _halfTimeAwayGoals_, of type _Integer_, public. Indicates the visitant team number of goals before the break.
+- _referees_, of type _List\<String\>_, public. Contains the name of the 3 referees.
+- _roundId_, of type _Integer_, public. Indicates the round identification.
+- _*matchId_, of type _Integer_, public. Indicates the match identification.
+- _homeTeamInitials_, of type _String_, public. Indicates the initials of the team playing as local.
+- _awayTeamInitials_, of type _String_, public. Indicates the initials of the team playing as visitant.
+- _firstShotMinute_, of type _Double_, public. Indicates the minute when the first shot was taken.
+
+**Derived properties**:
+
+- _result_, of type _Result_, public. It can take LOCAL_WINS (local goals > visitant goals), VISITANT_WINS (local goals < visitant goals) or DRAW (local goals = visitant goals) as values.
+- _recent_, of type _String_, public. Indicates the name of the third referee.
+- _totalGoals_, of type _String_, public. Indicates the name of the third referee.
+- _winner_, of type _String_, public. Indicates the name of the third referee.
 
 **Constructores**: 
 
