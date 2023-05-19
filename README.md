@@ -101,33 +101,34 @@ Represents one Football World Cup match.
 #### Auxiliary types
 
 - Result, enum. It can take LOCAL_WINS, VISITANT_WINS and DRAW as values.
-- Location, class. It has `stadium` and `city` as properties (it also has a toString method, equality criteria and natural order using both properties).
+- Location, class. It has String `stadium` and String `city` as properties (it also has a toString method, equality criteria and natural order using both properties).
 
 ### Factory- MatchFactory
 
 Factory class to construct objects of type Matches.
 
-- _Partidas leerPartidas(String nomfich)_:Crea un objeto de tipo Partidas a partir de la información recogida en el archivo csv, cuya ruta se da como parámetro.
+- _Matches readMatches(String file)_: Creates an object of type Matches from the stored information in the csv file, whose path is given as parameter.
 
-### Tipo Contenedor - Partidas
+- _(private) Match parseMatch(String s)_: Creates an object of type Match from the stored information in a line of the csv file, each line is given as parameter.
 
-Clase contenedora de los objetos de tipo Partida.
+### Container Type - Matches
 
-**Propiedades**:
+Container class of the object of type Match.
 
--  _partidas_, de tipo _List\<Partida\>_, consultable. Lista de partidas de ajedrez 
--  _numero partidas_, de tipo _Integer_, consultable. Número de partidas del contenedor. 
+**Properties**:
+
+-  _matches_, of type `List\<Match\>`, private. List containing all the matches. 
  
-**Constructores**: 
+**Constructors**: 
 
-- C1: Constructor por defecto. Creal un objeto de tipo Partidas sin ninguna partida almacenada.
-- C2: Constructor con un parámetro de tipo Collection\<Partida\>. Crea un objeto de tipo Partidas con las partidas incluidas en la colección dada como parámetro.
-- C3: Constructor con un parámetro de tipo Stream\<Partida\>. Crea un objeto de tipo Partidas con las partidas incluidas en el Stream dado 
+- C1: By default constructor. Creates an empty object of type Match.
+- C2:  Constructor with one parameter of type Collection\<Match\>. Creates an object of type Matches with the matches included in the collection given as parameter.
+- C3: Constructor with one parameter of type Stream\<Match\>. Creates an object of type Matches with the matches included in the stream given as parameter.
 
-**Criterio de igualdad**: Dos partidas son iguales si lo son sus propiedades partidas.
+**Equality criteria**: Two matches are equal if all their elements are equal.
 
+**Other methods**:
 
-**Otras operaciones**:
 - _void agregarPartida(Partida p)_: Añade una partida de ajedrez al objeto.
 - _Double getPromedioDuracionesMedias(TipoVictoria vic)_: Devuelve la media de la duración media(en segundos) por turno de las partidas. Si la media no se puede calcular, devuelve cero.
 - _Map<String, Double> getPorcentajesSiguienteMovimiento(String movimiento, Integer numeroMovimiento)_: Devuelve un Map en el que las claves son movimientos siguientes al dado como parámetro (según el movimiento y la posición en la que se hace), y los valores el porcentaje de veces que se ha hecho ese movimiento. Por ejemplo,     si el movimiento es "Nc6" y el número de movimiento es el 6, el Map contiene como claves los movimientos hechos en séptimo lugar tras un movimiento "Nc6". Los valores serán el porcentaje de veces que se han hecho esos movimientos. Eleva ```IllegalArgumentException```si numeroMovimiento no es mayor o igual que uno.
