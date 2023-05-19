@@ -71,7 +71,7 @@ public class Match implements Comparable<Match> {
 			Checkers.check("The minute of the first shot is not correct", firstShotMinute>=0.0);
 		}
 
-		Checkers.check("The date is not correct", !dateTime.isAfter(LocalDateTime.now()));
+		Checkers.check("The date is not correct", dateTime.isBefore(LocalDateTime.now()));
 		Checkers.check("The initials of the teams are not correct", homeTeamInitials.length()==3 && awayTeamInitials.length()==3);
 
 		this.year = year;
