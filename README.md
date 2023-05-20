@@ -166,7 +166,7 @@ Container class of the object of type Match.
  
 - _worldCupWinnerPerYear()_: Returns a dictionary relating all the World Cup years (keys) to the winner of that World Cup (values).
 
- ### Test
+ ### Test - TestWorldCupMatch
  
 Test class where all the methods have been implemented to show their correct funcionality and to ease the use of them to the user. This are the auxiliary methods:
  
