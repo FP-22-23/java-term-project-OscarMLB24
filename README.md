@@ -130,17 +130,38 @@ Container class of the object of type Match.
 **Other methods**:
 
 - _Match getMatch(int i)_: Returns the match in position i.
+
 - _List<Match> getMatches(int i,int e): Returns the matches contained in the interval (i,e).
+ 
 - _Integer getNumberMatches()_: Returns the total number of matches in the list.
+
 - _void addMatch(Match m)_: Adds the match m to the list.
+
 - _void addMatches(List<Match> l)_: Adds the all the matches contanined in l to the list.
+
 - _void removeMatch(Match m / int i)_: If the parameter is of type `Match`, it removes that match from the list (in case it exists). If the patameter is of type `Integer`, ir removes the match in position i.
+
 - _Boolean checkMatchData(String variable, String value)_: Checks if there is a match in the whole list in which the property "variable" coincides with the given value. For example, variable = "homeTeamName" and value = "argentina", it will return `true` if there is a match where the local team name is argentina, otherwise, it will return `false`.
+
 - _Double averageValue(String variable)_: Computes the average value of the given property "variable". If "variable" does not coincide with any object `Match` property, it will return `null`. If it coincides, it will return a Double value of the average. In case there is any error computing the average, the result would be 0.0.
+
 - _List<Match> filterBy(String variable, String value)_: Filters the list of matches in order to get all the matches whose property "variable" coincides with the given "value". If there is an exception or no match satisfies that conditions, the result will be `null`.
+
 - _Map<String, List<Match>> matchesPerCountry()_: Returns a dictionary relating all the national football teams names (keys) to all their played matches (values).
+
 - _Map<String, Long> numberWonMatchesPerCountry()_: Returns a dictionary relating all the national football teams names (keys) to their number of won mathces (values).
+
 - _Match maxOrMinAfterFiltering(String filteringVariable, String filteringValue, String  functionVariable , String function)_: Filters the list of matches in order to get all the matches whose property "variable" coincides with the given "value". If there is no match with that property or value, the list will be empty (using filterBy). Then, it returns the match with the maximum or minimum value (depending on the parameter "function", which can be max or min) comparing by the given parameter "functionVariable". If there is an exception or no match satisfies that conditions, the result will be `null`.
+
 - _List<Match> sortedFiltering(String filteringVariable, String filteringValue, String sortingVariable, String reversed)_: Filters the list of matches in order to get all the matches whose property "variable" coincides with the given "value". If there is no match with that property or value, the list will be empty (using filterBy). Then, it returns a list of matches sorted (depending on the parameter "reversed", it will be reversed or not) comparing by the given parameter "sortingVariable". If there is an exception or no match satisfies that conditions, the result will be an empty list.
+ 
+- _List<String> printMatches()_: Returns a list containing the short format of all the matches.
+ 
 
-
+- _Map<Integer, Integer> maxAttendanceEachYear()_: Returns a dictionary relating all the World Cup years (keys) to the maximum attendance to a match (values).
+ 
+- _SortedMap<String,List<Match>> matchesWithMoreTotalGoalsPerCountry(Integer n)_: Returns a dictionary relating all the national football teams names (keys) to a list of the "n" (parameter) matches with the greatest number of total goals (values). The keys are sorted alphabetically.
+ 
+- _String countryWithMostWonMatches(String function)_: Returns the name of the national football team with most or lest (depending on the patameter "function", which can be max or min) won matches.
+ 
+- _worldCupWinnerPerYear()_: Returns a dictionary relating all the World Cup years (keys) to the winner of that World Cup (values).
