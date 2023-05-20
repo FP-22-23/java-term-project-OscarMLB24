@@ -174,7 +174,7 @@ Test class where all the methods have been implemented to show their correct fun
  
 - _String askForString(String question)_: Returns the user's answer after having been asked with the parameter "question".
  
-- _Integer Integer askForInteger(String question, Integer interA, Integer interB)_: Returns the user's answer after having been asked with the parameter "question". If the answered number is not an Integer, is lower than parameter "interA" or it is equals or higher than paramter "interB", the user will be asked again.
+- _Integer Integer askForInteger(String question, Integer interA, Integer interB)_: Returns the user's answer after having been asked with the parameter "question". If the answered number is not an `Integer`, is lower than parameter "interA" or it is equals or higher than paramter "interB", the user will be asked again.
  
 - _From F1(...) to F15(...)_: Specific test methods to implement the previous described `Matches` methods.
  
